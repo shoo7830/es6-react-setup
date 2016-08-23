@@ -1,49 +1,31 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 class App extends React.Component {
     constructor(){
         super();
-        this.state = {val: 0};
-        this.update = this.update.bind(this);
-    }
-    update(){
-        this.setState({val: this.state.val + 1 })
-    }
-    componentWillMount(){
-       this.setState({m: 2})
+        this.state = {data: [
+            {id: 1, name: "Somi Jeon"},{id: 2, name:"Kim Doyeon "},
+            {id: 3, name: "Kang Mina"},{id: 4, name:"Choi Yujeong"},
+            {id: 5, name: "Yu Yeonjung"},{id: 6, name:"Kim SoHye"},
+            {id: 7, name: "Ju Kyeolkyung"}, {id: 8, name:"Cheong Chaeyeon"},
+            {id: 9, name: "Kim Sejung"},{id: 10, name:"Kim Chungha"},
+            {id: 11, name: "Lim NaYoung"}
+        ]}
     }
     render(){
-        console.log('rendering')
-        return <button onClick={this.update}>{this.state.val * this.state.m}</button>
-    }
-    componentDidMount(){
-        this.inc = setInterval(this.update,500)
-    }
-    componentWillUnmount(){
-        clearInterval(this.inc)
+        let rows = this.state.data.map( person => {
+            return <PersonRow key={person.id} data={person}/>
+        });
+        return <table>
+            <tbody>{rows}</tbody>
+        </table>
     }
 }
 
-class Wrapper extends React.Component {
-    constructor(){
-        super();
-    }
-    mount(){
-        ReactDOM.render(<App />, document.getElementById('a'))
-    }
-    unmount(){
-        ReactDOM.unmountComponentAtNode(document.getElementById('a'))
-    }
-    render(){
-        return(
-           <div>
-               <button onClick={this.mount.bind(this)}>Mount</button>
-               <button onClick={this.unmount.bind(this)}>Unmount</button>
-               <div id="a"></div>
-           </div>
-
-        )
-    }
+const PersonRow = (props) => {
+    return <tr>
+        <td>{props.data.id}</td>
+        <td>{props.data.name}</td>
+    </tr>
 }
 
-export default Wrapper
+export default App
