@@ -11,5 +11,9 @@
   "dependencies": {
     "react": "^15.2.0",
     "react-dom": "^15.2.0"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^0.1.10",
+    "webpack-merge": "^0.14.1"
   }
 }
